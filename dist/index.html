@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAIE Data Explorer</title>
+    <script type="module" crossorigin src="/assets/index-b2fa3154.js"></script>
+    <link rel="stylesheet" href="/assets/index-5fcf6a4b.css">
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but HAIE Data Explorer doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+      function get_browser() {
+        var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        if (/trident/i.test(M[1])) {
+          tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+          return { name: 'IE', version: (tem[1] || '') };
+        }
+        if (M[1] === 'Chrome') {
+          tem = ua.match(/\bOPR\/(\d+)/)
+          if (tem != null) { return { name: 'Opera', version: tem[1] }; }
+        }
+        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+          tem = ua.match(/\Edge\/(\d+)/)
+          if (tem != null) { return { name: 'Edge', version: tem[1] }; }      
+        }
+        M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+        if ((tem = ua.match(/version\/(\d+)/i)) != null) { M.splice(1, 1, tem[1]); }
+        return {
+          name: M[0],
+          version: +M[1]
+        };
+      }
+
+      var browser = get_browser()
+      var isSupported = isSupported(browser);
+
+      function isSupported(browser) {
+        var supported = true;
+        if ((browser.name === "MSIE" || browser.name === "IE") && browser.version <= 11) {
+          supported = false;
+        }
+        return supported;
+      }
+
+      if (!isSupported) {
+        //render unsupported message
+        window.alert("This app is not yet fully supported in your browser. Consider using latest version of Firefox, Safari or Chromium based browsers!");
+      }
+    </script>
+
+    <div id="app"></div>
+    
+  </body>
+</html>
